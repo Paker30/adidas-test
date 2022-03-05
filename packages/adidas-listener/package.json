@@ -1,0 +1,23 @@
+{
+  "name": "adidas-listener",
+  "version": "1.0.0",
+  "description": "adidas queue listener",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "adidas",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "adidas-schemas": "^1.0.0",
+    "async-mqtt": "^2.6.2",
+    "axios": "^0.26.0"
+  },
+  "devDependencies": {
+    "mqtt": "^4.3.6"
+  }
+}
