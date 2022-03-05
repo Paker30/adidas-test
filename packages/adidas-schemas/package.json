@@ -1,0 +1,17 @@
+{
+  "name": "adidas-schemas",
+  "version": "1.0.0",
+  "description": "schemas for the test",
+  "main": "src/index.js",
+  "scripts": {},
+  "keywords": [
+    "adidas",
+    "nodejs",
+    "schema"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^17.6.0"
+  }
+}
