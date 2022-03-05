@@ -1,5 +1,6 @@
 const Glue = require('@hapi/glue');
-const { PORT } = require('./config/env');
+const HapiMongoDB = require('hapi-mongodb');
+const { PORT, mongodb } = require('./config/env');
 
 const manifest = {
   server: {
@@ -8,7 +9,12 @@ const manifest = {
   },
   register: {
     plugins: [
+      {
+        plugin: HapiMongoDB,
+        options: mongodb,
+      },
       './api/health-check',
+      './api/subscriptions',
     ],
   },
 };
