@@ -1,0 +1,20 @@
+{
+  "name": "adidas-api",
+  "version": "1.0.0",
+  "description": "public api",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "adidas",
+    "nodejs",
+    "api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/glue": "^8.0.0",
+    "@hapi/hapi": "^20.2.1"
+  }
+}
