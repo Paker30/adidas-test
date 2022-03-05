@@ -1,0 +1,43 @@
+{
+  "name": "adidas-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "adidas backend node test",
+  "main": "index.js",
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "cm": "git-cz",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paker30/adidas-test.git"
+  },
+  "keywords": [
+    "adidas",
+    "nodejs"
+  ],
+  "author": "Francisco Moreno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Paker30/adidas-test/issues"
+  },
+  "homepage": "https://github.com/Paker30/adidas-test#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.1",
+    "@commitlint/config-conventional": "^16.2.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
