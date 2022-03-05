@@ -1,14 +1,14 @@
 const MQTT = require('async-mqtt');
 const { mqtt } = require('./config/env');
-const { pickAction } = require('./actions');
+const { select } = require('./actions');
 
 const client = MQTT.connect(mqtt.uri);
-const { action, topic } = pickAction(mqtt.role);
+const { action, topic } = select(mqtt.role);
 client.on('connect', () => {
   console.log('successful connection!!!');
   client.subscribe([topic], {})
     .then(() => {
-      console.log(`successful subscription to ${topic}`);
+      console.log(`subscription to: ${topic}`);
     });
 });
 

@@ -59,7 +59,7 @@ const notify = () => (_, payload) => {
   }
 };
 
-const pickAction = (role) => {
+const select = (role) => {
   switch (role) {
     case 'selector':
       return {
@@ -86,5 +86,7 @@ const pickAction = (role) => {
 
 module.exports = {
   discard,
-  pickAction,
+  process,
+  notify,
+  select,
 };
