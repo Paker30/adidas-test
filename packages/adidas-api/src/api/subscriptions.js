@@ -1,3 +1,6 @@
+const { subscription, id } = require('adidas-schemas');
+const toSubscription = (subscription) => ({ ...subscription, id: subscription._id });
+
 module.exports = {
   name: 'subscriptions',
   version: '1.1.1',
@@ -10,24 +13,38 @@ module.exports.register = async (server) => {
     handler: (request) => {
       const { db } = request.mongo;
 
-      return db.collection('subscriptions').find({}).toArray();
+      return db.collection('subscriptions').find({}).toArray()
+        .then((subscriptions) => subscriptions.map(toSubscription));
     },
   });
 
   server.route({
     method: 'GET',
     path: '/subscriptions/id/{id}',
+    options: {
+      validate: {
+        params: id
+      }
+    },
     handler: (request) => {
       const { db, ObjectID } = request.mongo;
       const { id } = request.params;
 
-      return db.collection('subscriptions').find({ _id: new ObjectID(id) }).toArray();
+      return db.collection('subscriptions').find({ _id: new ObjectID(id) }).toArray()
+        .then((subscription) => {
+          return subscription.map(toSubscription);
+        });
     },
   });
 
   server.route({
     method: 'POST',
     path: '/subscriptions',
+    options: {
+      validate: {
+        payload: subscription
+      }
+    },
     handler: (request) => {
       const { db } = request.mongo;
       const subscription = request.payload;
@@ -40,12 +57,17 @@ module.exports.register = async (server) => {
   server.route({
     method: 'DELETE',
     path: '/subscriptions/id/{id}',
+    options: {
+      validate: {
+        params: id
+      }
+    },
     handler: (request) => {
       const { db, ObjectID } = request.mongo;
       const { id } = request.params;
 
-      return db.collection('subscriptions').findOneAndUpdate({ _id: new ObjectID(id) }, { $set: { active: false } }, { returnOriginal: true})
-        .then(({ value }) => ({ id: value._id}));
+      return db.collection('subscriptions').findOneAndUpdate({ _id: new ObjectID(id) }, { $set: { active: false } }, { returnOriginal: true })
+        .then(({ value }) => ({ id: value._id }));
     },
   });
 };
