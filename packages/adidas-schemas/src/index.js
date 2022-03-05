@@ -15,7 +15,18 @@ const subscription = Joi.object({
   active: Joi.bool().default(true).description('subscription active status'),
 });
 
+const request = Joi.object({
+  id: Joi.string().description('subscription\'s id'),
+});
+
+const notification = Joi.object({
+  email: Joi.string().email().description('user\'s email subscription'),
+  newsletterId: Joi.string().description('newsletter id'),
+});
+
 module.exports = {
   subscription,
   id,
+  request,
+  notification,
 };
