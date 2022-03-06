@@ -1,10 +1,12 @@
 version: '3.9'
 
 services:
-  mongodb:
+  database:
     image: mongo:latest
     ports:
       - 27017:27017
+    networks:
+      - adidas-network
     volumes:
       - ~/apps/mongo:/data/db
   mqtt:
@@ -12,5 +14,58 @@ services:
     ports:
       - 9001:9001
       - 1883:1883
+    networks:
+      - adidas-network
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+  api:
+    image: adidas-api:1.1.0
+    ports:
+      - 8000:8000
+    networks:
+      - adidas-network
+    depends_on:
+      - 'database'
+    environment:
+      - MONGO_URL=mongodb://database:27017/adidas
+  selector:
+    image: adidas-listener:1.1.0
+    networks:
+      - adidas-network
+    depends_on:
+      - 'mqtt'
+    environment:
+      - MQTT_URI=tcp://mqtt:1883
+      - ROLE=selector
+      - ADIDAS_API=http://api:8000
+      - MQTT_SUBSCRIPTIONS=subscriptions
+      - MQTT_PROCESS=process
+      - MQTT_NOTIFY=email
+  processor:
+    image: adidas-listener:1.1.0
+    networks:
+      - adidas-network
+    depends_on:
+      - 'mqtt'
+    environment:
+      - MQTT_URI=tcp://mqtt:1883
+      - ROLE=processor
+      - ADIDAS_API=http://api:8000
+      - MQTT_SUBSCRIPTIONS=subscriptions
+      - MQTT_PROCESS=process
+      - MQTT_NOTIFY=email
+  notifier:
+    image: adidas-listener:1.1.0
+    networks:
+      - adidas-network
+    depends_on:
+      - 'mqtt'
+    environment:
+      - MQTT_URI=tcp://mqtt:1883
+      - ROLE=notifier
+      - ADIDAS_API=http://api:8000
+      - MQTT_SUBSCRIPTIONS=subscriptions
+      - MQTT_PROCESS=process
+      - MQTT_NOTIFY=email
+networks:
+  adidas-network:
