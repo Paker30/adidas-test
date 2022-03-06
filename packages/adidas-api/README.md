@@ -6,6 +6,9 @@ This module has the API to handle subscriptions in the test, it has 4 endpoints
 - */subscriptions/id/:id*: it returns a subscription
 - */subscriptions/*: it creates a subscription
 - */subscriptions/id/:id*: it cancels a subscription
+- *health-check*: it returns the API version
+
+You can find the SWAGGER documentation under at ```/documentation``` documentation.
 
 ## Subscription's model
 

@@ -10,6 +10,10 @@ module.exports.register = async (server) => {
   server.route({
     method: 'GET',
     path: '/subscriptions',
+    options:{
+      description: 'Get all subscriptions',
+      tags: ['api'],
+    },
     handler: (request) => {
       const { db } = request.mongo;
 
@@ -22,6 +26,8 @@ module.exports.register = async (server) => {
     method: 'GET',
     path: '/subscriptions/id/{id}',
     options: {
+      description: 'Get subscriptions by id',
+      tags: ['api'],
       validate: {
         params: id
       }
@@ -41,6 +47,8 @@ module.exports.register = async (server) => {
     method: 'POST',
     path: '/subscriptions',
     options: {
+      description: 'Create a subscription',
+      tags: ['api'],
       validate: {
         payload: subscription
       }
@@ -58,6 +66,8 @@ module.exports.register = async (server) => {
     method: 'DELETE',
     path: '/subscriptions/id/{id}',
     options: {
+      description: 'Cancel a subscription',
+      tags: ['api'],
       validate: {
         params: id
       }

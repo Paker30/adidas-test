@@ -14,10 +14,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "adidas-schemas": "^1.0.0",
     "@hapi/glue": "^8.0.0",
     "@hapi/hapi": "^20.2.1",
+    "@hapi/inert": "^6.0.5",
     "@hapi/joi": "^17.1.1",
-    "hapi-mongodb": "^10.0.3"
+    "@hapi/vision": "^6.1.0",
+    "adidas-schemas": "^1.0.0",
+    "hapi-mongodb": "^10.0.3",
+    "hapi-swagger": "^14.2.5",
+    "joi": "^17.6.0"
   }
 }

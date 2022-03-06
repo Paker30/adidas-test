@@ -1,6 +1,18 @@
 const Glue = require('@hapi/glue');
+const Inert = require('@hapi/inert');
+const Vision = require('@hapi/vision');
+const HapiSwagger = require('hapi-swagger');
 const HapiMongoDB = require('hapi-mongodb');
 const { PORT, mongodb } = require('./config/env');
+
+const { version } = require('../package.json');
+
+const swaggerOptions = {
+  info: {
+    title: 'Adidas test API',
+    version,
+  },
+};
 
 const manifest = {
   server: {
@@ -9,6 +21,12 @@ const manifest = {
   },
   register: {
     plugins: [
+      Inert,
+      Vision,
+      {
+        plugin: HapiSwagger,
+        options: swaggerOptions
+      },
       {
         plugin: HapiMongoDB,
         options: mongodb,

@@ -9,6 +9,10 @@ module.exports.register = async (server) => {
   server.route({
     method: 'GET',
     path: '/health-check',
+    options: {
+      description: 'API version',
+      tags: ['api'],
+    },
     handler: () => version,
   });
 };
