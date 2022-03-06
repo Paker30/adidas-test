@@ -9,7 +9,7 @@
     "nodejs",
     "schema"
   ],
-  "author": "",
+  "author": "Francisco Moreno",
   "license": "MIT",
   "dependencies": {
     "joi": "^17.6.0"
