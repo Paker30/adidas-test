@@ -1,7 +1,7 @@
 module.exports = {
   mqtt: {
     uri: process.env.MQTT_URI || 'tcp://localhost:1883',
-    role: process.env.ROlE || 'selector',
+    role: process.env.ROLE || 'selector',
     topics: {
       selector: process.env.MQTT_SUBSCRIPTIONS || 'subscriptions',
       process: process.env.MQTT_PROCESS || 'process',
