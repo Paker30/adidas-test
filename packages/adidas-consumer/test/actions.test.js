@@ -18,6 +18,12 @@ describe('actions', () => {
   });
 
   describe('discard', () => {
+    test('message is mal formed', () => {
+      discard(client)(null, Buffer.from('This is not an object'));
+      expect(client.publish).toBeCalledTimes(0);
+      expect(consoleError).toBeCalledTimes(0);
+    });
+
     test('message is not valid', () => {
       discard(client)(null, Buffer.from(JSON.stringify({ id: '1234', wrongProperty: 'this is not a valid property' })));
       expect(client.publish).toBeCalledTimes(0);
@@ -45,6 +51,13 @@ describe('actions', () => {
   });
 
   describe('process', () => {
+    test('message is mal formed', () => {
+      process(client)(null, Buffer.from('This is not an object'));
+      expect(client.publish).toBeCalledTimes(0);
+      expect(axios.get).toBeCalledTimes(0);
+      expect(consoleError).toBeCalledTimes(0);
+    });
+
     test('message is not valid', () => {
       process(client)(null, Buffer.from(JSON.stringify({ id: '1234', wrongProperty: 'this is not a valid property' })));
       expect(client.publish).toBeCalledTimes(0);
@@ -75,6 +88,48 @@ describe('actions', () => {
       }, 100);
     });
 
+    test('message was valid but subscription did not have consent', (done) => {
+      axios.get.mockImplementationOnce(() => Promise.resolve({
+        data: [{ active: true, consent: false, email: 'mortadelo@tia.com', newsletterId: '123' }],
+      }));
+      client.publish.mockRejectedValue(new Error(''));
+      process(client)(null, Buffer.from(JSON.stringify({ id: '1234' })));
+      expect(axios.get).toBeCalledTimes(1);
+      setTimeout(() => {
+        expect(client.publish).toBeCalledTimes(0);
+        expect(consoleError).toBeCalledTimes(0);
+        done();
+      }, 100);
+    });
+
+    test('message was valid but subscription did not have email', (done) => {
+      axios.get.mockImplementationOnce(() => Promise.resolve({
+        data: [{ active: true, consent: true, newsletterId: '123' }],
+      }));
+      client.publish.mockRejectedValue(new Error(''));
+      process(client)(null, Buffer.from(JSON.stringify({ id: '1234' })));
+      expect(axios.get).toBeCalledTimes(1);
+      setTimeout(() => {
+        expect(client.publish).toBeCalledTimes(0);
+        expect(consoleError).toBeCalledTimes(0);
+        done();
+      }, 100);
+    });
+
+    test('message was valid but subscription was cancelled', (done) => {
+      axios.get.mockImplementationOnce(() => Promise.resolve({
+        data: [{ active: false, consent: true, email: 'mortadelo@tia.com', newsletterId: '123' }],
+      }));
+      client.publish.mockRejectedValue(new Error(''));
+      process(client)(null, Buffer.from(JSON.stringify({ id: '1234' })));
+      expect(axios.get).toBeCalledTimes(1);
+      setTimeout(() => {
+        expect(client.publish).toBeCalledTimes(0);
+        expect(consoleError).toBeCalledTimes(0);
+        done();
+      }, 100);
+    });
+
     test('message was valid and published', (done) => {
       axios.get.mockImplementationOnce(() => Promise.resolve({
         data: [{ active: true, consent: true, email: 'mortadelo@tia.com', newsletterId: '123' }],
@@ -91,6 +146,11 @@ describe('actions', () => {
   });
 
   describe('notify', () => {
+    test('message is mal formed', () => {
+      notify(client)(null, Buffer.from('This is not an object'));
+      expect(consoleLog).toBeCalledTimes(0);
+    });
+
     test('message is not valid', () => {
       notify(client)(null, Buffer.from(JSON.stringify({
         email: 'mortadelo@tia.com',

@@ -16,12 +16,14 @@ const subscription = Joi.object({
 });
 
 const request = Joi.object({
-  id: Joi.string().description('subscription\'s id').example('62237e0f2ad6b25690243bae'),
+  id: Joi.string().required().description('subscription\'s id').example('62237e0f2ad6b25690243bae'),
 });
 
 const notification = Joi.object({
-  email: Joi.string().email().description('customer\'s email subscription').example('mortadelo@tia.com'),
-  newsletterId: Joi.string().description('newsletter id').example('123'),
+  email: Joi.string().email().required()
+    .description('customer\'s email subscription')
+    .example('mortadelo@tia.com'),
+  newsletterId: Joi.string().required().description('newsletter id').example('123'),
 });
 
 module.exports = {
