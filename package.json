@@ -8,7 +8,8 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "cm": "git-cz",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "lerna publish --conventional-commits --message 'chore: bump version'"
   },
   "repository": {
     "type": "git",
