@@ -2,6 +2,7 @@
   "name": "adidas-listener",
   "version": "1.0.0",
   "description": "adidas queue listener",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js"
