@@ -1,6 +1,6 @@
-# adidas-listener
+# adidas-consumer
 
-This module has the listener used at the test, depending on the role, the module works in different ways. It is a [mqtt]() listener.
+This module has the consumer used at the test, depending on the role, the module works in different ways. It is a [mqtt]() listener.
 
 ## Start
 

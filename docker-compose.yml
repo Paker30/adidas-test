@@ -29,7 +29,7 @@ services:
     environment:
       - MONGO_URL=mongodb://database:27017/adidas
   selector:
-    image: adidas-listener:1.1.0
+    image: adidas-consumer:1.1.0
     networks:
       - adidas-network
     depends_on:
@@ -42,7 +42,7 @@ services:
       - MQTT_PROCESS=process
       - MQTT_NOTIFY=email
   processor:
-    image: adidas-listener:1.1.0
+    image: adidas-consumer:1.1.0
     networks:
       - adidas-network
     depends_on:
@@ -55,7 +55,7 @@ services:
       - MQTT_PROCESS=process
       - MQTT_NOTIFY=email
   notifier:
-    image: adidas-listener:1.1.0
+    image: adidas-consumer:1.1.0
     networks:
       - adidas-network
     depends_on:

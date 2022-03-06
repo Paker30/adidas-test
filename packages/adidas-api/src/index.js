@@ -7,6 +7,10 @@ const { PORT, mongodb } = require('./config/env');
 
 const { version } = require('../package.json');
 
+console.log('Environment variables');
+console.log(`Mongo uri ${mongodb.url}`);
+console.log(`Port ${PORT}`);
+
 const swaggerOptions = {
   info: {
     title: 'Adidas test API',

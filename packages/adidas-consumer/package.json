@@ -1,11 +1,11 @@
 {
-  "name": "adidas-listener",
+  "name": "adidas-consumer",
   "version": "1.1.0",
-  "description": "adidas queue listener",
+  "description": "adidas queue consumer",
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "docker build . -t adidas-listener:${npm_package_version}",
+    "build": "docker build . -t adidas-consumer:${npm_package_version}",
     "start": "node src/index.js"
   },
   "keywords": [
