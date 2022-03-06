@@ -24,7 +24,7 @@ There're 3 different roles:
 - *processor*: Takes the messages form the queue -by default process- and checks if the subscription is active, the user has aggred to received emails and there's an email address, in that case a message is send to the notify queue, otherwise the message is discharged.
 - *notifier*: Takes the message from the queue -by default email- and "sends" an email with the selected subscription's newsletter.
 
-## Notification message
+## Message format
 
 A notification message must have this format -any message which doesn't full fill the format is discharged-
 
@@ -32,6 +32,14 @@ A notification message must have this format -any message which doesn't full fil
 {
   id: 'subscription identifier'
 }
+```
+
+## Notify to a customer
+
+This is the way to send a notification
+
+```sh
+mosquitto_pub -h localhost -p 1883 -t "subscriptions" -m "{\"id\":\"62237e0f2ad6b25690243bae\"}"
 ```
 
 ## Environment variables
