@@ -19,7 +19,7 @@ services:
     volumes:
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
   api:
-    image: adidas-api:1.1.0
+    image: adidas-api:latest
     ports:
       - 8000:8000
     networks:
@@ -29,7 +29,7 @@ services:
     environment:
       - MONGO_URL=mongodb://database:27017/adidas
   selector:
-    image: adidas-consumer:1.1.0
+    image: adidas-consumer:latest
     networks:
       - adidas-network
     depends_on:
@@ -42,7 +42,7 @@ services:
       - MQTT_PROCESS=process
       - MQTT_NOTIFY=email
   processor:
-    image: adidas-consumer:1.1.0
+    image: adidas-consumer:latest
     networks:
       - adidas-network
     depends_on:
@@ -55,7 +55,7 @@ services:
       - MQTT_PROCESS=process
       - MQTT_NOTIFY=email
   notifier:
-    image: adidas-consumer:1.1.0
+    image: adidas-consumer:latest
     networks:
       - adidas-network
     depends_on:

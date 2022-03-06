@@ -6,10 +6,11 @@
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
     "clean": "lerna clean",
-    "cm": "git-cz",
     "prepare": "husky install",
-    "publish": "lerna publish --conventional-commits --message 'chore: bump version'"
+    "publish": "lerna publish --conventional-commits --message 'chore: bump version'",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",

@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "docker build . -t adidas-consumer:${npm_package_version}",
+    "build": "docker build . -t adidas-consumer:${npm_package_version} -t adidas-consumer:latest",
     "start": "node src/index.js",
     "test": "jest"
   },

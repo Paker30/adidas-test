@@ -5,7 +5,7 @@
   "private": true,
   "main": "src/index.js",
   "scripts": {
-    "build": "docker build . -t adidas-api:${npm_package_version}",
+    "build": "docker build . -t adidas-api:${npm_package_version} -t adidas-api:latest",
     "start": "node src/index.js"
   },
   "keywords": [
