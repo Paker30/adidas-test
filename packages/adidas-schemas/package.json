@@ -11,6 +11,9 @@
   ],
   "author": "Francisco Moreno",
   "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "joi": "^17.6.0"
   }

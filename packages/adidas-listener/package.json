@@ -14,6 +14,9 @@
   ],
   "author": "Francisco Moreno",
   "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "adidas-schemas": "^1.1.0",
     "async-mqtt": "^2.6.2",

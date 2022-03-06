@@ -15,6 +15,9 @@
   ],
   "author": "Francisco Moreno",
   "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "@hapi/glue": "^8.0.0",
     "@hapi/hapi": "^20.2.1",
