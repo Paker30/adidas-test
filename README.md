@@ -24,23 +24,33 @@ In order to start the project you need to follow those steps:
 6. Up the whole system with docker-compose ```docker-compose up -d```
 
 Everything is up and running, you can check the API is running entering this url in your browser
+
 > ```http://localhost:8000/health-check```
+
 you must get the API's version, also run this command to check all the systems are up and running
+
 > ```docker-compose ps```
+
 You must see 6 services running: api, database, mqtt, notifier, processor and selector
 
 ### Handle the API
 
 In order to handle the subscriptions, you should go to the swagger documentation
+
 > ```http://localhost:8000/documentation```
+
 and you'll get a list of all the endpoints, a small description and examples.
 
 ### Sending messages into the system to "send" emails
 
-There's no web client to handle MQTT -all the clients I tried weren't available as docker image- so, you must send the messages over the cli tool, eventhough there're two options:
+There's no web client to handle MQTT -all the clients I tried weren't available as docker image- so, you must send the messages over the cli tool, even though there're two options:
+
 a. You can send messages through [mosquitto_pub](https://mosquitto.org/man/mosquitto_pub-1.html) tool -it's part of the mosquitto system-
+
 > ```mosquitto_pub -h [IP mosquitto] -p [PORT] -t [subscription name] -m [message]```
+
 b. You can send messages through [mqtt](https://www.npmjs.com/package/mqtt) module -it's installed at ```packages/adidas-consumer```-
+
 > ```npx mqtt pub -t [subscription name] -t [PORT] -m '[message]```
 
 If the message was valid, the subscription was active and had an email, a message would arrive to notifier and you would see a message like this
@@ -52,7 +62,7 @@ A valid message must follow this format
 
 ```JSON
 {
-  "id": "subscripton's id"
+  "id": "subscription's id"
 }
 ```
 
