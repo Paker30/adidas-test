@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Paker30/adidas-test/compare/adidas-schemas@1.1.0...adidas-schemas@1.1.1) (2022-03-06)
+
+**Note:** Version bump only for package adidas-schemas
+
+
+
+
+
 # 1.1.0 (2022-03-06)
 
 

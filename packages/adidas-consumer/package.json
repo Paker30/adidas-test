@@ -1,6 +1,6 @@
 {
   "name": "adidas-consumer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "adidas queue consumer",
   "private": true,
   "main": "index.js",
@@ -19,7 +19,7 @@
     "node": ">=14"
   },
   "dependencies": {
-    "adidas-schemas": "^1.1.0",
+    "adidas-schemas": "^1.1.1",
     "async-mqtt": "^2.6.2",
     "axios": "^0.26.0"
   },
