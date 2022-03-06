@@ -7,6 +7,8 @@
         }
     },
     "rules": {
-        "semi": 2
+        "semi": 2,
+        "max-len": ["error", { "code": 120 }],
+        "object-curly-newline": ["error", {"ObjectPattern": { "multiline": true }}]
     }
 }
